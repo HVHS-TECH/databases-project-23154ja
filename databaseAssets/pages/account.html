@@ -5,21 +5,33 @@
 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title></title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="databaseAssets/style.css" />
 
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
 
-    </head>
+  <script src="../javaScript/firebaseSetup.js"></script>
+  <script src="fb_io.js"></script>
+  <script src="confetti.min.js"></script>
+
+    </head> 
 
 
 <body>
 
+    <div id="logButton"></div>
     <form>
         <label>Choose a username (this will be visible to other users):</label>
+         <br>
         <input type="text" id="u">
+        <br><br>
+                <label>when were you born</label>
+                 <br>
+        <input type="date" id="u">
+         <br> <br>
+<button onclick="">submit</button>
     </form>
 
 </body>
