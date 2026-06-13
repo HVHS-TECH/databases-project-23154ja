@@ -1,18 +1,15 @@
 function googleLoginRequest() {
-  let pressed = true;
-  firebase.auth().onAuthStateChanged((_user) => {
-    if (pressed) {
-        //call isloggenchech to see 
-      googleLoginMiddleMan(_user);
-    }
-    pressed = false;
-  });
+  
+if(!isLoggedInCheck()) {
+         googleLoginPopup();
+
+}
 }
 
-function isLoggedInCheck(_user) {
+function isLoggedInCheck() {
     console.log('');
     console.log('runing func, isLoggedInCheck');
-  if (_user) {
+  if (GLOBAL_user) {
     console.log("user is logged in already");
     return(true);
   } else {
@@ -20,3 +17,20 @@ function isLoggedInCheck(_user) {
     return(false);
   }
 }
+
+
+
+function googleLoginPopup() {
+  let provider = new firebase.auth.GoogleAuthProvider();
+
+  firebase.auth().signInWithPopup(provider).then((result) => {
+
+    console.log('user has logged in');
+
+  });
+}
+
+
+firebase.auth().onAuthStateChanged((_user) => {
+    GLOBAL_user = _user
+});
