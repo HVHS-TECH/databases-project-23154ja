@@ -29,7 +29,7 @@ body {
 /* style for all buttons */
 #logButton button,
 #submitButton,
-.navigate {
+.back {
     font-family: Arial, sans-serif;
     border: 1px solid #000000;
     background-color: #ccccccff;
