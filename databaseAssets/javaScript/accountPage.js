@@ -45,7 +45,7 @@ async function submitForm() {
 
 async function updatePage() {
     console.log('');
-    console.log('runing func, updatePage');
+    console.log('running func, updatePage');
     if (isLoggedInCheck()) {
         updateIDStuff(true);
     } else {
@@ -77,12 +77,14 @@ async function updateIDStuff(isLoggedIn) {
         }
         console.log('updating button to logout button as already logged in');
         document.getElementById('logButton').innerHTML = "<button onclick='googleLogoutRequest()'>Logout</button>";
+        document.getElementById('profilePic').innerHTML = '<img src="'+GLOBAL_user.photoURL+'" alt="Profile Picture">';
     } else {
         console.log('user is not logged in so altering page accordingly');
         console.log('setting greetingText to "please log in"');
         document.getElementById('greetingText').innerHTML = "Please log in";
         console.log('updating button to login button as user is logged out');
-        document.getElementById('logButton').innerHTML = "<button onclick='googleLoginRequest()'>Login</button>";
+        document.getElementById('logButton').innerHTML = "<button onclick='googleLoginRequest()'>Login with Google</button>"; 
+        document.getElementById('profilePic').innerHTML = '';
     }
 }
 

@@ -34,7 +34,7 @@ function logError(errorMessage) {
 
 function isLoggedInCheck() {
   console.log('');
-  console.log('runing func, isLoggedInCheck');
+  console.log('running func, isLoggedInCheck');
   if (GLOBAL_user) {
     console.log("user is logged in already");
     return (true);

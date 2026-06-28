@@ -1,7 +1,7 @@
 
 function googleLoginRequest() {
   console.log('');
-  console.log('runing func, googleLoginRequest');
+  console.log('running func, googleLoginRequest');
 
   if (!isLoggedInCheck()) {
     googleLoginPopup();
@@ -12,7 +12,7 @@ function googleLoginRequest() {
 
 function googleLoginPopup() {
   console.log('');
-  console.log('runing func, googleLoginPopup');
+  console.log('running func, googleLoginPopup');
 
   let provider = new firebase.auth.GoogleAuthProvider();
 
@@ -29,7 +29,7 @@ function googleLoginPopup() {
 
 function googleLogoutRequest() {
   console.log('');
-  console.log('runing func, googleLogoutRequest');
+  console.log('running func, googleLogoutRequest');
   firebase.auth().signOut();
   console.log('user has logged out');
 }
@@ -38,7 +38,7 @@ function googleLogoutRequest() {
 
 firebase.auth().onAuthStateChanged((_user) => {
   console.log('');
-  console.log('runing firebase listener, onAuthStateChanged');
+  console.log('running firebase listener, onAuthStateChanged');
   GLOBAL_user = _user
   console.log('saved google data (or lack of) to variable');
   console.log('calling func to update page')

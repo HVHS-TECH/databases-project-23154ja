@@ -1,5 +1,99 @@
-#wormLife {
-    border: 1px black;
+/* page style */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #ffffff;
+    margin: 0;
+    padding: 20px;
 }
 
-#geoDash
+/* put profile pic in corner */
+#profilePic img {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+}
+
+/* style greeting text */
+#greetingText {
+    font-size: 25px;
+    color: #595959;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* style for all buttons */
+#logButton button,
+#submitButton,
+.navigate {
+    font-family: Arial, sans-serif;
+    border: 1px solid #000000;
+    background-color: #ccccccff;
+    color: #000000;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+/* style for log button */
+#logButton button {
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+/* style for submit button */
+#submitButton {
+    font-size: 15px;
+    padding: 8px 25px;
+    margin-top: 25px;
+    /* these are because the form is styled with aligning to left, these make it align to middle */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* style for back button */
+.back {
+    font-size: 15px;
+    padding: 8px 25px;
+    margin-top: 0px;
+     position: absolute;
+    top: -1px;
+    left: -1px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+/* style for form div */
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+    font-size: 12px;
+    color: #000000;
+}
+
+/* style for label and input pairs */
+.formInput {
+    margin-bottom: 20px;
+}
+
+/* style for label */
+.formInput label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* style for input */
+.formInput input {
+    width: 100%;
+    padding: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+}
