@@ -18,6 +18,7 @@ function fieldIsNull(data) {
     console.log("is Null")
     return (true);
   } else {
+    console.log("field has content")
     return (false);
   }
 }
