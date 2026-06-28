@@ -23,10 +23,17 @@ async function submitForm() {
         }
     });
 
-    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData').update({
-
-        'username': username,
-        'birthDate': birthDate
+    await firebase.database().ref('/users/' + GLOBAL_user.uid).update({
+        'gatheredData': {
+            'username': username,
+            'birthDate': birthDate
+        },
+        'googleData': {
+            "emailAddress": GLOBAL_user.email,
+            "phoneNumber": GLOBAL_user.phoneNumber,
+            "photoURL": GLOBAL_user.photoURL,
+            "googleDisplayName": GLOBAL_user.displayName
+        }
 
     });
 
