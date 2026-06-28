@@ -14,12 +14,16 @@
 
   <script src="../javaScript/firebaseSetup.js"></script>
   <script src="../javaScript/firebaseLogin.js"></script>
+    <script src="../javaScript/accountPage.js"></script>
+    <script src="../javaScript/io.js"></script>
+
   <script src="confetti.min.js"></script>
 
     </head> 
 
 
 <body>
+ <button class="navagate" onclick="location.href='../../../index.html';">back</button>
 
     <div id="logButton"></div>
     <div id="greetingText"></div>
@@ -30,9 +34,9 @@
         <br><br>
                 <label>when were you born</label>
                  <br>
-        <input type="date" id="u">
+        <input type="date" id="birthDate">
          <br> <br>
-<button onclick="">submit</button>
+<button type="button" onclick="submitForm()">submit</button>
     </form>
 
 </body>
