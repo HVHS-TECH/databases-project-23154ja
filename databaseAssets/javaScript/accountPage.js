@@ -1,3 +1,5 @@
+const minAge = 5;
+const maxAge = 150;
 let accountCreation;
 
 async function submitForm() {
@@ -6,8 +8,14 @@ async function submitForm() {
     const username = document.getElementById("username").value;
     const birthDate = document.getElementById("birthDate").value;
 
+    // replace doc get el by id in all files with const's at top, maybe, needs to update / check when called
+
     if (fieldIsNull(username) || fieldIsNull(birthDate)) {
         alert('please fill out all fields');
+        return;
+    }
+    if (!isValidDate(birthDate)) {
+        alert('you must be 5 to 150 years old');
         return;
     }
     if (!GLOBAL_user) {
@@ -72,23 +80,23 @@ async function updateIDStuff(isLoggedIn) {
                 console.log('username was found, welcoming user back');
             }
         } else {
-            if (document.getElementById('username').value){
-            document.getElementById('greetingText').innerHTML = "Welcome " + document.getElementById('username').value + ", submit this form to create your account.";
-            console.log('username was not found, welcoming user with username in form');
+            if (document.getElementById('username').value) {
+                document.getElementById('greetingText').innerHTML = "Welcome " + document.getElementById('username').value + ", submit this form to create your account.";
+                console.log('username was not found, welcoming user with username in form');
             } else {
-                 document.getElementById('greetingText').innerHTML = "Welcome " + GLOBAL_user.displayName + ", submit this form to create your account.";
-            console.log('username was not found, welcoming user with their google displayName');
+                document.getElementById('greetingText').innerHTML = "Welcome " + GLOBAL_user.displayName + ", submit this form to create your account.";
+                console.log('username was not found, welcoming user with their google displayName');
             }
         }
         console.log('updating button to logout button as already logged in');
         document.getElementById('logButton').innerHTML = "<button onclick='googleLogoutRequest()'>Logout</button>";
-        document.getElementById('profilePic').innerHTML = '<img src="'+GLOBAL_user.photoURL+'" alt="Profile Picture">';
+        document.getElementById('profilePic').innerHTML = '<img src="' + GLOBAL_user.photoURL + '" alt="Profile Picture">';
     } else {
         console.log('user is not logged in so altering page accordingly');
         console.log('setting greetingText to "please log in"');
         document.getElementById('greetingText').innerHTML = "Please log in";
         console.log('updating button to login button as user is logged out');
-        document.getElementById('logButton').innerHTML = "<button onclick='googleLoginRequest()'>Login with Google</button>"; 
+        document.getElementById('logButton').innerHTML = "<button onclick='googleLoginRequest()'>Login with Google</button>";
         document.getElementById('profilePic').innerHTML = '';
     }
 }
@@ -107,4 +115,80 @@ async function updateForm() {
             document.getElementById("username").value = GLOBAL_user.displayName;
         }
     }, logError);
+}
+
+console.log(isValidDate('2010-04-14'));
+function isValidDate(date) {
+    let dash1 = date.indexOf('-');
+    let dash2 = date.slice(dash1 + 1).indexOf('-') + dash1 + 1;
+
+    let userYear = date.slice(0, dash1);
+    let userMonth = date.slice(dash1 + 1, dash2);
+    let userDay = date.slice(dash2 + 1)
+
+    let currentYear = new Date().getFullYear();
+    let currentMonth = new Date().getMonth() + 1;
+    let currentDay = new Date().getDate();
+
+    console.log(userDay + ', ' + userMonth + ', ' + userYear)
+
+    if (currentYear - userYear > minAge && currentYear - userYear < maxAge) {
+        return true;
+    } else if (currentYear - userYear == minAge) {
+        return compareDays(currentMonth, userMonth, 'min', currentDay, userDay);
+    } else if (currentYear - userYear == maxAge) {
+        return compareDays(currentMonth, userMonth, 'max', currentDay, userDay);
+    } else {
+        return false;
+    }
+
+}
+
+
+function compareDays(current, user, minmax, currentDay, userDay) {
+
+    if (compareMonths(current, user, minmax) == 'continue') {
+        return true;
+    } else if (compareMonths(current, user, minmax) == 'break') {
+        return false;
+    } else if (minmax == 'max') {
+        if (currentDay < userDay) {
+            return true;
+        } else if (currentDay == userDay) {
+            return false;
+        } else {
+            return false;
+        }
+    } else if (minmax == 'min') {
+        if (currentDay > userDay) {
+            return true;
+        } else if (currentDay == userDay) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+}
+
+
+
+function compareMonths(current, user, minmax) {
+    if (minmax == 'max') {
+        if (current < user) {
+            return 'continue';
+        } else if (current == user) {
+            return 'again';
+        } else {
+            return 'break';
+        }
+    } else if (minmax == 'min') {
+        if (current > user) {
+            return 'continue';
+        } else if (current == user) {
+            return 'again';
+        } else {
+            return 'break';
+        }
+    }
 }
