@@ -1,4 +1,6 @@
 
+let GLOBAL_user;
+
 function googleLoginRequest() {
   console.log('');
   console.log('running func, googleLoginRequest');
