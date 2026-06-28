@@ -72,8 +72,13 @@ async function updateIDStuff(isLoggedIn) {
                 console.log('username was found, welcoming user back');
             }
         } else {
-            document.getElementById('greetingText').innerHTML = "Welcome " + GLOBAL_user.displayName + ", submit this form to create your account.";
+            if (document.getElementById('username').value){
+            document.getElementById('greetingText').innerHTML = "Welcome " + document.getElementById('username').value + ", submit this form to create your account.";
+            console.log('username was not found, welcoming user with username in form');
+            } else {
+                 document.getElementById('greetingText').innerHTML = "Welcome " + GLOBAL_user.displayName + ", submit this form to create your account.";
             console.log('username was not found, welcoming user with their google displayName');
+            }
         }
         console.log('updating button to logout button as already logged in');
         document.getElementById('logButton').innerHTML = "<button onclick='googleLogoutRequest()'>Logout</button>";
