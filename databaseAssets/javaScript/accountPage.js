@@ -9,6 +9,8 @@ async function submitForm() {
     const birthDate = document.getElementById("birthDate").value;
 
     // replace doc get el by id in all files with const's at top, maybe, needs to update / check when called
+    //add log errors
+    //ask about alerts
 
     if (fieldIsNull(username) || fieldIsNull(birthDate)) {
         alert('please fill out all fields');

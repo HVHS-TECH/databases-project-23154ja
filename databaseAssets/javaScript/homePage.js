@@ -19,6 +19,6 @@ async function goToGamePage(gameName) {
         location.href = 'databaseAssets/pages/gamePages/02geoDash.html';
     }
 } else {
-    alert('please create an account');
+    alert('please sign in');
 }
 }
