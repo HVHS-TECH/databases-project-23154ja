@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="../../style.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
+
+    <script src="../../javaScript/firebaseSetup.js"></script>
+    <script src="../../javaScript/firebaseLogin.js"></script>
+    <script src="../../javaScript/gamePage.js"></script>
+    <script src="../../javaScript/io.js"></script>
+
+    <script src="../../javaScript/confetti.min.js"></script>
+
+</head>
+
+
+<body>
+    <button class="back" onclick="location.href='../../../';">back</button>
+
+    <div id="title"></div>
+    <div id="blurb"></div>
+
+    <button onclick="location.href='../../games/01wormLife';"></button>
+
+    <div id="personalHighscore">
+        <div id="userHighscore"></div>
+        <div id="userPlaceInLeaderboard"></div>
+    </div>
+
+
+</body>
+
+</html>

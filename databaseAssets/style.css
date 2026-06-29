@@ -1,3 +1,8 @@
+
+/* ========================================== 
+ Started styling with account page                          
+ ========================================== */
+
 /* page style */
 body {
     font-family: Arial, sans-serif;
@@ -8,7 +13,7 @@ body {
 }
 
 /* put profile pic in corner */
-#profilePic img {
+#profilePicAccount img {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -96,4 +101,68 @@ form {
     font-size: 14px;
     border: 1px solid #000000;
     box-sizing: border-box;
+}
+
+/* ========================================== 
+ Continued styling home page                          
+ ========================================== */
+
+/* Style for title */
+h1 {
+    font-size: 35px;
+    color: #595959;
+    margin-top: 40px;
+    font-weight: normal;
+}
+
+/* Style for account button */
+#accountButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #000000;
+    border: 1px solid #000000;
+    background-color: #cccccc;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Style for profile pic in account button(like existing profile pic style but not absolute pos) */
+#profilePicHome img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+}
+
+/* Style for game buttons */
+#wormLife, #geoDash {
+    display: inline-block;
+    vertical-align: top;
+    width: 350px;
+    min-height: 150px;
+    margin: 50px 15px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    text-align: left;
+    cursor: pointer;
+}
+
+/* Style for game titles inside buttons */
+#wormLife h4, #geoDash h4 {
+    font-size: 18px;
+    color: #595959;
+    margin: 0 0 10px 0;
+    font-weight: normal;
+}
+
+/* Style for game descriptions inside buttons */
+#wormLife p, #geoDash p {
+    font-size: 14px;
+    color: #595959;
+    margin: 0;
+    line-height: 1.4;
 }
