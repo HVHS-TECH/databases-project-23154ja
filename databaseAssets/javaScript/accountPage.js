@@ -51,7 +51,7 @@ async function submitForm() {
 }
 
 
-async function updatePage() {
+function updatePage() {
     console.log('');
     console.log('running func, updatePage');
     if (isLoggedInCheck()) {
