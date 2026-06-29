@@ -11,6 +11,7 @@ async function submitForm() {
     // replace doc get el by id in all files with const's at top, maybe, needs to update / check when called
     //add log errors
     //ask about alerts
+    //move io to top
 
     if (fieldIsNull(username) || fieldIsNull(birthDate)) {
         alert('please fill out all fields');
