@@ -2,22 +2,23 @@
 async function updatePage() {
     console.log('');
     console.log('running func, updatePage');
-    if (isLoggedInCheck()) {
-        let hasAccount = false;
-        await firebase.database().ref('/users/' + GLOBAL_user.uid).once('value', (data) => {
-            if (data.val()) {
-                hasAccount = true;
-            }
-        });
-        if (hasAccount) {
-            document.getElementById("accountButton").innerHTML = '<div id="profilePicHome"></div> Account';
-            document.getElementById("profilePicHome").innerHTML = '<img src="' + GLOBAL_user.photoURL + '" alt="Profile Picture">';
-        } else {
-            document.getElementById("accountButton").innerHTML = '<div id="profilePicHome"></div> Sign in / Sign up';
-            document.getElementById("profilePicHome").innerHTML = '';
-        }
+    if (await hasAccountAndIsLoggedInCheck()) {
+        document.getElementById("accountButton").innerHTML = '<div id="profilePicHome"></div> Account';
+        document.getElementById("profilePicHome").innerHTML = '<img src="' + GLOBAL_user.photoURL + '" alt="Profile Picture">';
     } else {
         document.getElementById("accountButton").innerHTML = '<div id="profilePicHome"></div> Sign in / Sign up';
         document.getElementById("profilePicHome").innerHTML = '';
     }
+}
+
+async function goToGamePage(gameName) {
+    if(await hasAccountAndIsLoggedInCheck()){
+    if (gameName == '01wormLife') {
+        location.href = 'databaseAssets/pages/gamePages/01wormLife.html';
+    } else if (gameName == '02geoDash') {
+        location.href = 'databaseAssets/pages/gamePages/02geoDash.html';
+    }
+} else {
+    alert('please create an account');
+}
 }

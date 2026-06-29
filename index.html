@@ -1,10 +1,11 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+    <title>WormLife+</title>
+    <link rel="icon" type="image/png" href="/databaseAssets/images/wormLife+.png">
     <link rel="stylesheet" href="databaseAssets/style.css" />
 
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-app.js"></script>
@@ -13,30 +14,38 @@
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
 
     <script src="databaseAssets/javaScript/firebaseSetup.js"></script>
-     <script src="databaseAssets/javaScript/homePage.js"></script>
-     <script src="databaseAssets/javaScript/firebaseLogin.js"></script>
-   
+    <script src="databaseAssets/javaScript/homePage.js"></script>
+    <script src="databaseAssets/javaScript/firebaseLogin.js"></script>
+
     <script src="databaseAssets/javaScript/io.js"></script>
 
     <script src="databaseAssets/javaScript/confetti.min.js"></script>
 
 </head>
 
-    <body>
-                    <button id="accountButton" onclick="location.href='databaseAssets/pages/account.html';"><div id="profilePicHome"></div></button>
+<body>
+    <button id="accountButton" onclick="location.href='databaseAssets/pages/account.html';">
+        <div id="profilePicHome"></div>
+    </button>
 
-        <h1>WormLife+</h1>
-
-       
-           
-         <button id="wormLife" onclick="location.href='databaseAssets/pages/gamePages/01wormLife.html';"> <h4>Worm Life</h4>
-            <p>Live life as a hungry worm, wiggling around and eating food. But beware, your hunger can’t be sated forever.</p></button>
-        
-
-         <button id="geoDash" onclick="location.href='databaseAssets/pages/gamePages/02geoDash.html';"> <h4>Geo Dash</h4>
-            <p>Survive for as long as possible in this geometry jumping game.</p></button>
+    <h1>WormLife+</h1>
 
 
 
-    </body>
+    <button id="wormLife" onclick="goToGamePage('01wormLife')">
+        <h4>Worm Life</h4>
+        <p>Live life as a hungry worm, wiggling around and eating food. But beware, your hunger can’t be sated forever.
+        </p>
+    </button>
+
+
+    <button id="geoDash" onclick="goToGamePage('02geoDash')">
+        <h4>Geo Dash</h4>
+        <p>Survive for as long as possible in this geometry jumping game.</p>
+    </button>
+
+
+
+</body>
+
 </html>

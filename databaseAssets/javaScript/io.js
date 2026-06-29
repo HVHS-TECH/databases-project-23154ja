@@ -12,34 +12,34 @@ function successConfetti() {
 
 
 function fieldIsNull(data) {
-  console.log("");
-  console.log("running func: fieldIsNull");
-  if ((data == null) || (data.trim() == "")) {
-    console.log("is Null")
-    return (true);
-  } else {
-    console.log("field has content")
-    return (false);
-  }
+    console.log("");
+    console.log("running func: fieldIsNull");
+    if ((data == null) || (data.trim() == "")) {
+        console.log("is Null")
+        return (true);
+    } else {
+        console.log("field has content")
+        return (false);
+    }
 }
 
 function logError(errorMessage) {
-  console.log("");
-  console.log('their was an error: ');
-  console.log(errorMessage);
+    console.log("");
+    console.log('there was an error: ');
+    console.log(errorMessage);
 }
 
 
 function isLoggedInCheck() {
-  console.log('');
-  console.log('running func, isLoggedInCheck');
-  if (GLOBAL_user) {
-    console.log("user is logged in already");
-    return (true);
-  } else {
-    console.log("user is not logged in");
-    return (false);
-  }
+    console.log('');
+    console.log('running func, isLoggedInCheck');
+    if (GLOBAL_user) {
+        console.log("user is logged in already");
+        return (true);
+    } else {
+        console.log("user is not logged in");
+        return (false);
+    }
 }
 
 function isValidDate(date) {
@@ -114,5 +114,19 @@ function compareMonths(current, user, minmax) {
         } else {
             return 'break';
         }
+    }
+}
+
+async function hasAccountAndIsLoggedInCheck() {
+    if (isLoggedInCheck()) {
+        let hasAccount = false;
+        await firebase.database().ref('/users/' + GLOBAL_user.uid).once('value', (data) => {
+            if (data.val()) {
+                hasAccount = true;
+            }
+        });
+        return hasAccount;
+    } else {
+        return false;
     }
 }

@@ -166,3 +166,93 @@ h1 {
     margin: 0;
     line-height: 1.4;
 }
+
+/* ========================================== 
+   Worm Life Page Custom Layout Styles          
+   ========================================== */
+
+/* Style for the blurb paragraph */
+#blurb {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #595959;
+    margin: 15px auto 25px auto;
+    max-width: 600px;
+    line-height: 1.4;
+}
+
+/* Style for the play button matching your exact spec sheet */
+#playButton {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #15c415;
+    border: 1px solid #000000;
+    background-color: #efefef;
+    padding: 8px 30px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto 30px auto;
+}
+
+/* Style for the highscore container text block */
+#personalHighscore {
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    color: #595959;
+    margin-bottom: 35px;
+}
+
+/* Headings completely separated on top of the table */
+.leaderboardHeadings {
+    max-width: 850px;
+    margin: 0 auto;
+    display: flex;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Aligning header columns explicitly */
+.headingColumn {
+    flex: 1;
+    padding: 12px 5px;
+    text-align: left;
+}
+
+
+/* Container that handles vertical scrolling for entries independently */
+.leaderboardScrollContainer {
+     max-width: 850px;
+    margin: 0 auto;
+    border: 1px solid #000000;
+    max-height: 350px; /* Adjust this height to control when it starts scrolling */
+    overflow-y: auto;
+    background-color: #ffffff;
+}
+
+/* Table properties designed to align perfectly with the flex headers above */
+#leaderboardTable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; 
+}
+
+/* Table cell styling and grid structures */
+#leaderboardTable td {
+    padding: 12px 10px;
+    text-align: left;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    border-right: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    height: 20px; /* Gives structural form to empty preview rows */
+}
+
+#leaderboardTable tr:last-child td {
+    border-bottom: none; /* Prevents visual bug at bottom of scroll box */
+}
+
+#leaderboardTable td:last-child {
+    border-right: none; /* Keeps border layout clean with external headers */
+}
