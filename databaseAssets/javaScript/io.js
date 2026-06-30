@@ -210,3 +210,17 @@ async function updateHighscore(gameID) {
 
     }
 }
+
+function returnNumSuffix(num) {
+    if (num == 11 || num == 12 || num == 13) {
+        return 'th';
+    } else if (num % 10 == 1) {
+        return 'st';
+    } else if (num % 10 == 2) {
+        return 'nd';
+    } else if (num % 10 == 3) {
+        return 'rd';
+    } else {
+        return 'th';
+    }
+}

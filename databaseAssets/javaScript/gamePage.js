@@ -21,14 +21,30 @@ async function displayHighscores(gameID) {
     document.getElementById('leaderboardContainer').innerHTML = '';
     firebase.database().ref('/highscores/' + gameID).orderByChild('score').once('value', (data) => {
         let highscoreArray = [];
+        let keyArray = [];
+        let place = false;
+
         data.forEach((data2) => {
             highscoreArray.push(data2.val());
+            keyArray.push(data2.key);
         })
         highscoreArray.reverse();
+        keyArray.reverse();
+
+        keyArray.forEach((IDuid) => {
+            console.log(IDuid)
+        })
+        for (let i = 0; i < keyArray.length; i++) {
+            if (GLOBAL_user.uid == keyArray[i]) {
+                place = i + 1;
+            }
+        }
 
         highscoreArray.forEach((highscore) => {
-
             document.getElementById('leaderboardContainer').innerHTML = document.getElementById('leaderboardTable').innerHTML + '<tr><td>' + highscore.username + '</td><td>' + highscore.score + '</td><td>' + returnDates(highscore.date, 'all') + '</td></tr>';
         });
+        if (place) {
+            document.getElementById('userPlaceInLeaderboard').innerHTML = place + returnNumSuffix(place);
+        }
     });
 }
