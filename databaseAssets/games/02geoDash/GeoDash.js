@@ -17,7 +17,8 @@ function endGame(_player, _obstacle){
     obstacles.removeAll();
     // Put your database writes here:
 
-
+    //calls func to push score to firebase
+	logScore('02geoDash', score);
 
 }
 

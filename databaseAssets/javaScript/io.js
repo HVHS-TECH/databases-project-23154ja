@@ -130,3 +130,20 @@ async function hasAccountAndIsLoggedInCheck() {
         return false;
     }
 }
+
+
+function logScore(gameID, score) {
+
+       let currentYear = new Date().getFullYear();
+    let currentMonth = new Date().getMonth() + 1;
+    let currentDay = new Date().getDate();
+    let currentHour = new Date().getHours()
+    let currentMinute = new Date().getMinutes()
+    let currentSecond = new Date().getSeconds()
+
+    firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/' + gameID).update({
+        
+         [currentYear+'-'+currentMonth+'-'+currentDay+'-'+currentHour+'-'+currentMinute+'-'+currentSecond]: score
+
+    });
+}

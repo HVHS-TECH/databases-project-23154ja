@@ -12,6 +12,7 @@ async function submitForm() {
     //add log errors
     //ask about alerts
     //move io to top
+    //sort out paywall two funcs
 
     if (fieldIsNull(username) || fieldIsNull(birthDate)) {
         alert('please fill out all fields');

@@ -307,6 +307,10 @@ function endScreenSetup() {
 	//calculate score, -480 is the score you would get if you don't eat anything. - makes sure that the min score is 0
 	//also keeps score in the hundreds to thousands by increasing every tenth of a second instead of every frame (60th of a second)
 	score = Math.floor(gameFrame / (FPS / 10)) - 480;
+
+	//calls func to push score to firebase
+	logScore('01wormLife', score);
+
 	//sets the digits to the right numbers using remainder dividing
 	digit1.image = numImgNames[Math.floor(score / 1000) % 10];
 	digit2.image = numImgNames[Math.floor(score / 100) % 10];
