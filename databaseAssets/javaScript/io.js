@@ -140,10 +140,11 @@ function logScore(gameID, score) {
     let currentHour = new Date().getHours()
     let currentMinute = new Date().getMinutes()
     let currentSecond = new Date().getSeconds()
+    let currentMillisecond = new Date().getMilliseconds()
 
     firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/' + gameID).update({
         
-         [currentYear+'-'+currentMonth+'-'+currentDay+'-'+currentHour+'-'+currentMinute+'-'+currentSecond]: score
+         [currentYear+'-'+currentMonth+'-'+currentDay+'-'+currentHour+'-'+currentMinute+'-'+currentSecond+'-'+currentMillisecond]: score
 
     });
 }
