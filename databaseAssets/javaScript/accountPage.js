@@ -13,6 +13,7 @@ async function submitForm() {
     //ask about alerts
     //move io to top
     //fix - make it oldest highscore
+    //make 0's for sec and mill nad min and hour
 
     if (fieldIsNull(username) || fieldIsNull(birthDate)) {
         alert('please fill out all fields');

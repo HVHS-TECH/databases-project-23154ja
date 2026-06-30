@@ -79,10 +79,12 @@ function returnDates(string, ymORd) {
     }
     if (ymORd == 'year') {
         return string.slice(0, dash1);
-    } else if(ymORd== 'month'){
-    return string.slice(dash1 + 1, dash2);
-    }else if(ymORd=='day'){
-    return string.slice(dash2 + 1, dash3);
+    } else if (ymORd == 'month') {
+        return string.slice(dash1 + 1, dash2);
+    } else if (ymORd == 'day') {
+        return string.slice(dash2 + 1, dash3);
+    } else if (ymORd == 'all') {
+        return string.slice(dash2 + 1, dash3) + ' - ' + string.slice(dash1 + 1, dash2) + ' - ' + string.slice(0, dash1);
     }
 }
 
@@ -161,7 +163,7 @@ async function logScore(gameID, score) {
     let currentSecond = new Date().getSeconds()
     let currentMillisecond = new Date().getMilliseconds()
 
-    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/' + gameID).update({
+    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).update({
         [currentYear + '-' + currentMonth + '-' + currentDay + '-' + currentHour + '-' + currentMinute + '-' + currentSecond + '-' + currentMillisecond]: score
     });
     updateHighscore(gameID);
@@ -172,24 +174,31 @@ async function logScore(gameID, score) {
 async function updateHighscore(gameID) {
     let highscore = -1;
     let date = '';
+    let username = '';
 
 
-    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/' + gameID).once('value', (data) => {
+    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).once('value', (data) => {
 
         data.forEach((data2) => {
             if (data2.val() >= highscore) {
                 highscore = data2.val();
-                date=data2.key
+                date = data2.key;
             }
         })
     });
-    firebase.database().ref('/users/' + GLOBAL_user.uid + '/highscores/' + gameID).set({
-       'score': highscore,
-       'date': date
+    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData/username').once('value', (data) => {
+        username = data.val();
+    });
+
+    firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({
+        'score': highscore,
+        'date': date,
+        'username': username
     });
     firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({
         'score': highscore,
-        'date': date
+        'date': date,
+        'username': username
     });
 
 }

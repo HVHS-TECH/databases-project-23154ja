@@ -256,3 +256,18 @@ h1 {
 #leaderboardTable td:last-child {
     border-right: none; /* Keeps border layout clean with external headers */
 }
+
+/* 1nd Place - Silver */
+#leaderboardContainer tr:nth-child(1) {
+    background-color: #fff2b2;
+}
+
+/* 2nd Place - Silver */
+#leaderboardContainer tr:nth-child(2) {
+    background-color: #e6e6e6;
+}
+
+/* 3rd Place - Bronze */
+#leaderboardContainer tr:nth-child(3) {
+    background-color: #f0d3b7;
+}
