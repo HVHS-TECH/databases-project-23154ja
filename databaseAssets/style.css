@@ -202,7 +202,7 @@ h1 {
     margin-bottom: 35px;
 }
 
-/* Headings completely separated on top of the table */
+/* Style for the leaderboard headings */
 .leaderboardHeadings {
     max-width: 850px;
     margin: 0 auto;
@@ -213,7 +213,7 @@ h1 {
     font-weight: bold;
 }
 
-/* Aligning header columns explicitly */
+/* Style for the individual columns of the headings */
 .headingColumn {
     flex: 1;
     padding: 12px 5px;
@@ -221,7 +221,7 @@ h1 {
 }
 
 
-/* Container that handles vertical scrolling for entries independently */
+/* Style for the thing the leaderboard is in that scrolls */
 .leaderboardScrollContainer {
      max-width: 850px;
     margin: 0 auto;
@@ -231,14 +231,14 @@ h1 {
     background-color: #ffffff;
 }
 
-/* Table properties designed to align perfectly with the flex headers above */
+/* Style for the leaderboard table */
 #leaderboardTable {
     width: 100%;
     border-collapse: collapse;
     table-layout: fixed; 
 }
 
-/* Table cell styling and grid structures */
+/* Style for each cell of leaderboard */
 #leaderboardTable td {
     padding: 12px 10px;
     text-align: left;
@@ -246,28 +246,30 @@ h1 {
     font-size: 16px;
     border-right: 1px solid #000000;
     border-bottom: 1px solid #000000;
-    height: 20px; /* Gives structural form to empty preview rows */
+    height: 20px; 
 }
 
+/* Style for the bottom cells */
 #leaderboardTable tr:last-child td {
-    border-bottom: none; /* Prevents visual bug at bottom of scroll box */
+    border-bottom: none; 
 }
 
+/* Style for the right cells */
 #leaderboardTable td:last-child {
-    border-right: none; /* Keeps border layout clean with external headers */
+    border-right: none; 
 }
 
-/* 1nd Place - Silver */
+/* Style for 1nd Place - Silver */
 #leaderboardContainer tr:nth-child(1) {
     background-color: #fff2b2;
 }
 
-/* 2nd Place - Silver */
+/* Style for 2nd Place - Silver */
 #leaderboardContainer tr:nth-child(2) {
     background-color: #e6e6e6;
 }
 
-/* 3rd Place - Bronze */
+/* Style for 3rd Place - Bronze */
 #leaderboardContainer tr:nth-child(3) {
     background-color: #f0d3b7;
 }
