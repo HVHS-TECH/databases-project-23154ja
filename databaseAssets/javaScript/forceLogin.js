@@ -3,4 +3,7 @@ async function updatePage() {
     } else {
         location.href = '../../../';
     }
+    if (typeof updatePageCont === "function") {
+        updatePageCont();
+    }
 }

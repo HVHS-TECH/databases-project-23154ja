@@ -12,13 +12,13 @@ async function updatePage() {
 }
 
 async function goToGamePage(gameName) {
-    if(await hasAccountAndIsLoggedInCheck()){
-    if (gameName == '01wormLife') {
-        location.href = 'databaseAssets/pages/gamePages/01wormLife.html';
-    } else if (gameName == '02geoDash') {
-        location.href = 'databaseAssets/pages/gamePages/02geoDash.html';
+    if (await hasAccountAndIsLoggedInCheck()) {
+        if (gameName == '01wormLife') {
+            location.href = 'databaseAssets/pages/gamePages/01wormLife.html';
+        } else if (gameName == '02geoDash') {
+            location.href = 'databaseAssets/pages/gamePages/02geoDash.html';
+        }
+    } else {
+        alert('please sign in');
     }
-} else {
-    alert('please sign in');
-}
 }
