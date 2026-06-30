@@ -1,5 +1,5 @@
 function updatePageCont() {
-    firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/' + gameID).once('value', (data) => {
+    firebase.database().ref('/users/' + GLOBAL_user.uid + '/highscores/' + gameID).once('value', (data) => {
         if (data.val()) {
 
             document.getElementById('personalHighscore').innerHTML = 'Your highscore: <span id="userHighscore"></span> &nbsp;&nbsp;&nbsp;&nbsp; You are <span id="userPlaceInLeaderboard"></span> place';
