@@ -186,6 +186,9 @@ async function updateHighscore(gameID) {
     } else {
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).once('value', (data) => {
 
+            if (data.hasChildren<1) {
+                return;
+            }
             data.forEach((data2) => {
                 if (data2.val() >= highscore) {
                     highscore = data2.val();

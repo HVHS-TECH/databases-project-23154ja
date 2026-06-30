@@ -14,8 +14,9 @@ async function submitForm() {
     //move io to top
     //fix - make it oldest highscore
     //make 0's for sec and mill nad min and hour
-    //update account use firebase order when get own highscore 
-    //fix minus one bug when no highscore but update all
+    //update account use firebase order when get own highscore - not done
+    
+    //todo: get someone to try to break in, / stress test, add comments
 
     if (fieldIsNull(username) || fieldIsNull(birthDate)) {
         alert('please fill out all fields');
