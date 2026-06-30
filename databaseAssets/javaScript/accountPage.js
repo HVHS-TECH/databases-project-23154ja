@@ -65,6 +65,7 @@ function updatePage() {
         updateIDStuff(false);
     }
     updateForm();
+    updateHighscore('all');
 }
 
 async function updateIDStuff(isLoggedIn) {

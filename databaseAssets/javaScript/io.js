@@ -176,29 +176,37 @@ async function updateHighscore(gameID) {
     let date = '';
     let username = '';
 
+    if (gameID == 'all') {
+        await firebase.database().ref('/highscores/').once('value', (data) => {
+            data.forEach((gameIDs) => {
+                console.log(gameIDs.key)
+                updateHighscore(gameIDs.key);
+            })
+        });
+    } else {
+        await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).once('value', (data) => {
 
-    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).once('value', (data) => {
+            data.forEach((data2) => {
+                if (data2.val() >= highscore) {
+                    highscore = data2.val();
+                    date = data2.key;
+                }
+            })
+        });
+        await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData/username').once('value', (data) => {
+            username = data.val();
+        });
 
-        data.forEach((data2) => {
-            if (data2.val() >= highscore) {
-                highscore = data2.val();
-                date = data2.key;
-            }
-        })
-    });
-    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData/username').once('value', (data) => {
-        username = data.val();
-    });
+        firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({
+            'score': highscore,
+            'date': date,
+            'username': username
+        });
+        firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({
+            'score': highscore,
+            'date': date,
+            'username': username
+        });
 
-    firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({
-        'score': highscore,
-        'date': date,
-        'username': username
-    });
-    firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({
-        'score': highscore,
-        'date': date,
-        'username': username
-    });
-
+    }
 }
