@@ -5,7 +5,7 @@ let accountCreation;
 async function submitForm() {
     console.log('');
     console.log('attempting to submit form');
-    const username = document.getElementById("username").value;
+    const username = document.getElementById("username").value.slice(0, maxUsernameLength);
     const birthDate = document.getElementById("birthDate").value;
 
     // replace doc get el by id in all files with const's at top, maybe, needs to update / check when called
@@ -17,7 +17,7 @@ async function submitForm() {
     //update account use firebase order when get own highscore - not done
     
     //todo: get someone to try to break in, / stress test, add comments
-
+//set html to use var
     if (fieldIsNull(username) || fieldIsNull(birthDate)) {
         alert('please fill out all fields');
         return;
@@ -115,13 +115,13 @@ async function updateForm() {
         let info = data.val();
         if (info) {
             if (fieldIsNull(document.getElementById("username").value)) {
-                document.getElementById("username").value = info.gatheredData.username;
+                document.getElementById("username").value = info.gatheredData.username.slice(0, maxUsernameLength);
             }
             if (fieldIsNull(document.getElementById("birthDate").value)) {
                 document.getElementById("birthDate").value = info.gatheredData.birthDate;
             }
         } else if (fieldIsNull(document.getElementById("username").value) && GLOBAL_user.displayName) {
-            document.getElementById("username").value = GLOBAL_user.displayName;
+            document.getElementById("username").value = GLOBAL_user.displayName.slice(0, maxUsernameLength);
         }
     }, logError);
 }

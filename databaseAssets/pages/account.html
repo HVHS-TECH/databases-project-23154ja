@@ -13,6 +13,8 @@
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-analytics.js"></script>
 
+<script>let maxUsernameLength = 30;</script>
+
     <script src="../javaScript/firebaseSetup.js"></script>
      <script src="../javaScript/accountPage.js"></script>
      <script src="../javaScript/firebaseLogin.js"></script>
@@ -36,7 +38,7 @@
     <form>
         <div class="formInput">
             <label>Choose a username (this will be visible to other users):</label>
-            <input type="text" id="username" placeholder="Username, eg: tacocat123">
+            <input type="text" maxlength="30" id="username" placeholder="Username, eg: tacocat123">
         </div>
 
         <div class="formInput">
