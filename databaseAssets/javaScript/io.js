@@ -43,12 +43,12 @@ function isLoggedInCheck() {
 }
 
 function isValidDate(date) {
-    let dash1 = date.indexOf('-');
-    let dash2 = date.slice(dash1 + 1).indexOf('-') + dash1 + 1;
 
-    let userYear = date.slice(0, dash1);
-    let userMonth = date.slice(dash1 + 1, dash2);
-    let userDay = date.slice(dash2 + 1)
+    let userYear = returnDates(date, 'year');
+    let userMonth = returnDates(date, 'month');
+    let userDay = returnDates(date, 'day');
+    console.log(userDay)
+
 
     let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth() + 1;
@@ -67,6 +67,25 @@ function isValidDate(date) {
     }
 
 }
+
+
+function returnDates(string, ymORd) {
+    let dash1 = string.indexOf('-');
+    let dash2 = string.slice(dash1 + 1).indexOf('-') + dash1 + 1;
+    let dash3 = string.slice(dash2 + 1).indexOf('-') + dash2 + 1;
+
+    if (dash3 == dash2) {
+        dash3 = dash2 + 3;
+    }
+    if (ymORd == 'year') {
+        return string.slice(0, dash1);
+    } else if(ymORd== 'month'){
+    return string.slice(dash1 + 1, dash2);
+    }else if(ymORd=='day'){
+    return string.slice(dash2 + 1, dash3);
+    }
+}
+
 
 
 function compareDays(current, user, minmax, currentDay, userDay) {
@@ -132,9 +151,9 @@ async function hasAccountAndIsLoggedInCheck() {
 }
 
 
-function logScore(gameID, score) {
+async function logScore(gameID, score) {
 
-       let currentYear = new Date().getFullYear();
+    let currentYear = new Date().getFullYear();
     let currentMonth = new Date().getMonth() + 1;
     let currentDay = new Date().getDate();
     let currentHour = new Date().getHours()
@@ -142,9 +161,35 @@ function logScore(gameID, score) {
     let currentSecond = new Date().getSeconds()
     let currentMillisecond = new Date().getMilliseconds()
 
-    firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/' + gameID).update({
-        
-         [currentYear+'-'+currentMonth+'-'+currentDay+'-'+currentHour+'-'+currentMinute+'-'+currentSecond+'-'+currentMillisecond]: score
-
+    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/' + gameID).update({
+        [currentYear + '-' + currentMonth + '-' + currentDay + '-' + currentHour + '-' + currentMinute + '-' + currentSecond + '-' + currentMillisecond]: score
     });
+    updateHighscore(gameID);
+}
+
+
+
+async function updateHighscore(gameID) {
+    let highscore = -1;
+    let date = '';
+
+
+    await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/' + gameID).once('value', (data) => {
+
+        data.forEach((data2) => {
+            if (data2.val() >= highscore) {
+                highscore = data2.val();
+                date=data2.key
+            }
+        })
+    });
+    firebase.database().ref('/users/' + GLOBAL_user.uid + '/highscores/' + gameID).set({
+       'score': highscore,
+       'date': date
+    });
+    firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({
+        'score': highscore,
+        'date': date
+    });
+
 }
