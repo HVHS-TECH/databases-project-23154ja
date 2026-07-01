@@ -196,7 +196,7 @@ async function updateHighscore(gameID) {
                 }
             })
         });
-        if (score==-1) {
+        if (highscore==-1) {
             return;
         }
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData/username').once('value', (data) => {
