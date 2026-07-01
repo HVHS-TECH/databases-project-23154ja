@@ -186,7 +186,7 @@ async function updateHighscore(gameID) {
     } else {
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).once('value', (data) => {
 
-            if (data.hasChildren()) {
+            if (!data.hasChildren()) {
                 return;
             }
             data.forEach((data2) => {
@@ -196,6 +196,9 @@ async function updateHighscore(gameID) {
                 }
             })
         });
+        if (score==-1) {
+            return;
+        }
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData/username').once('value', (data) => {
             username = data.val();
         });
