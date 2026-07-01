@@ -12,7 +12,7 @@ async function updatePageCont() {
             document.getElementById('personalHighscore').innerHTML = 'play the game to get a highscore';
         }
     });
-    await updateHighscore(gameID)
+    await updateHighscore(gameID);
     displayHighscores(gameID);
 }
 

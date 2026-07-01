@@ -186,9 +186,7 @@ async function updateHighscore(gameID) {
     } else {
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).once('value', (data) => {
 
-            if (!data.hasChildren()) {
-                return;
-            }
+           
             data.forEach((data2) => {
                 if (data2.val() >= highscore) {
                     highscore = data2.val();
@@ -196,19 +194,21 @@ async function updateHighscore(gameID) {
                 }
             })
         });
-        if (highscore==-1) {
+        if (highscore == -1) {
+            await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({});
+            await firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({});
             return;
         }
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData/username').once('value', (data) => {
             username = data.val();
         });
 
-        firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({
+        await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({
             'score': highscore,
             'date': date,
             'username': username
         });
-        firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({
+        await firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({
             'score': highscore,
             'date': date,
             'username': username
