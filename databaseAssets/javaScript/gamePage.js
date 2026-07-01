@@ -41,7 +41,7 @@ async function displayHighscores(gameID) {
         }
 
         highscoreArray.forEach((highscore) => {
-            document.getElementById('leaderboardContainer').innerHTML = document.getElementById('leaderboardTable').innerHTML + '<tr><td>' + highscore.username + '</td><td>' + highscore.score + '</td><td>' + returnDates(highscore.date, 'all') + '</td></tr>';
+            document.getElementById('leaderboardContainer').innerHTML = document.getElementById('leaderboardTable').innerHTML + '<tr><td>"' + highscore.username + '"</td><td>"' + highscore.score + '"</td><td>' + returnDates(highscore.date, 'all') + '</td></tr>';
         });
         if (place) {
             document.getElementById('userPlaceInLeaderboard').innerHTML = place + returnNumSuffix(place);
