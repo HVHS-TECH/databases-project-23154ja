@@ -1,4 +1,4 @@
-function updatePageCont() {
+async function updatePageCont() {
     firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).once('value', (data) => {
         if (data.val()) {
 
@@ -11,8 +11,9 @@ function updatePageCont() {
         } else {
             document.getElementById('personalHighscore').innerHTML = 'play the game to get a highscore';
         }
-        displayHighscores(gameID);
     });
+    await updateHighscore(gameID)
+    displayHighscores(gameID);
 }
 
 
@@ -41,7 +42,7 @@ async function displayHighscores(gameID) {
         }
 
         highscoreArray.forEach((highscore) => {
-            document.getElementById('leaderboardContainer').innerHTML = document.getElementById('leaderboardTable').innerHTML + '<tr><td>"' + highscore.username + '"</td><td>"' + highscore.score + '"</td><td>' + returnDates(highscore.date, 'all') + '</td></tr>';
+            document.getElementById('leaderboardContainer').innerHTML = document.getElementById('leaderboardContainer').innerHTML + '<tr><td>' + preventCodeInjection(highscore.username) + '</td><td>' + preventCodeInjection(highscore.score) + '</td><td>' + preventCodeInjection(returnDates(highscore.date, 'all')) + '</td></tr>';
         });
         if (place) {
             document.getElementById('userPlaceInLeaderboard').innerHTML = place + returnNumSuffix(place);
