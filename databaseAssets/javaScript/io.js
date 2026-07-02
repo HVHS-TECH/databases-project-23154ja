@@ -145,7 +145,7 @@ async function hasAccountAndIsLoggedInCheck() {
             if (data.val()) {
                 hasAccount = true;
             }
-        });
+        }, logError);
         return hasAccount;
     } else {
         return false;
@@ -165,7 +165,7 @@ async function logScore(gameID, score) {
 
     await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).update({
         [currentYear + '-' + currentMonth + '-' + currentDay + '-' + currentHour + '-' + currentMinute + '-' + currentSecond + '-' + currentMillisecond]: score
-    });
+    }, logError);
     updateHighscore(gameID);
 }
 
@@ -182,7 +182,7 @@ async function updateHighscore(gameID) {
                 console.log(gameIDs.key)
                 updateHighscore(gameIDs.key);
             })
-        });
+        }, logError);
     } else {
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/allScores/' + gameID).once('value', (data) => {
 
@@ -193,26 +193,26 @@ async function updateHighscore(gameID) {
                     date = data2.key;
                 }
             })
-        });
+        }, logError);
         if (highscore == -1) {
-            await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({});
-            await firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({});
+            await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({}, logError);
+            await firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({}, logError);
             return;
         }
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData/username').once('value', (data) => {
             username = data.val();
-        });
+        }, logError);
 
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).set({
             'score': highscore,
             'date': date,
             'username': username
-        });
+        }, logError);
         await firebase.database().ref('/highscores/' + gameID + '/' + GLOBAL_user.uid).set({
             'score': highscore,
             'date': date,
             'username': username
-        });
+        }, logError);
 
     }
 }
