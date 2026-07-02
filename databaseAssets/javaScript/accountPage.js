@@ -7,17 +7,7 @@ async function submitForm() {
     console.log('attempting to submit form');
     const username = document.getElementById("username").value.slice(0, maxUsernameLength);
     const birthDate = document.getElementById("birthDate").value;
-
-    // replace doc get el by id in all files with const's at top, maybe, needs to update / check when called
-    //add log errors
-    //ask about alerts
-    //move io to top
-    //fix - make it oldest highscore
-    //make 0's for sec and mill nad min and hour
-    //update account use firebase order when get own highscore - not done
     
-    //todo: get someone to try to break in, / stress test, add comments
-//set html to use var
     if (fieldIsNull(username) || fieldIsNull(birthDate)) {
         alert('please fill out all fields');
         return;
