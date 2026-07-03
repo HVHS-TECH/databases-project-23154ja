@@ -27,7 +27,7 @@ async function submitForm() {
         } else {
             accountCreation = false;
         }
-    });
+    }, logError);
 
     await firebase.database().ref('/users/' + GLOBAL_user.uid).update({
         'gatheredData': {
@@ -41,7 +41,7 @@ async function submitForm() {
             "googleDisplayName": GLOBAL_user.displayName
         }
 
-    });
+    }, logError);
 
     updatePage();
     successConfetti();
@@ -68,7 +68,7 @@ async function updateIDStuff(isLoggedIn) {
         console.log('getting user data from firebase');
         await firebase.database().ref('/users/' + GLOBAL_user.uid + '/gatheredData/username').once('value', (data) => {
             username = data.val();
-        });
+        }, logError);
         if (username) {
             if (accountCreation) {
                 document.getElementById('greetingText').innerHTML = "account created";

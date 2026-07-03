@@ -14,7 +14,7 @@ async function updatePageCont() {
         } else {
             document.getElementById('personalHighscore').innerHTML = 'play the game to get a highscore';
         }
-    });
+    }, logError);
     await updateHighscore(gameID);
     displayHighscores(gameID);
 }
@@ -52,7 +52,7 @@ async function displayHighscores(gameID) {
 
             firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID + '/score').once('value', (data) => {
                 document.getElementById('userHighscore').innerHTML = data.val();
-            });
+            }, logError);
         }
-    });
+    }, logError);
 }
