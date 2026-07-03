@@ -1,12 +1,15 @@
+// 
+window.onpageshow = function (event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
+};
+
 async function updatePageCont() {
     firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID).once('value', (data) => {
         if (data.val()) {
 
             document.getElementById('personalHighscore').innerHTML = 'Your highscore: <span id="userHighscore"></span> &nbsp;&nbsp;&nbsp;&nbsp; You are <span id="userPlaceInLeaderboard"></span> place';
-
-            firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID + '/score').once('value', (data) => {
-                document.getElementById('userHighscore').innerHTML = data.val();
-            });
 
         } else {
             document.getElementById('personalHighscore').innerHTML = 'play the game to get a highscore';
@@ -46,6 +49,10 @@ async function displayHighscores(gameID) {
         });
         if (place) {
             document.getElementById('userPlaceInLeaderboard').innerHTML = place + returnNumSuffix(place);
+
+            firebase.database().ref('/users/' + GLOBAL_user.uid + '/scores/highscores/' + gameID + '/score').once('value', (data) => {
+                document.getElementById('userHighscore').innerHTML = data.val();
+            });
         }
     });
 }
